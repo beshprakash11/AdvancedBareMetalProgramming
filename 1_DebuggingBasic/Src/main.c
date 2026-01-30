@@ -1,17 +1,24 @@
 # include "stm32f446xx.h"
-#define GPIOAEN  (1U<<0)
-#define PIN5 		  (1U<<5)
-#define LED_PIN 	  PIN5
+
+int sum;
+
+int add(int num1, int num2){
+	int temp = 0;
+	temp = num1 +  num2;
+	return temp;
+}
+
 int main(void)
 {
-	/*Enable clock access to GIOA*/
-	RCC ->AHB1ENR |= GPIOAEN;
+	int total;
+	for(int i = 0; i < 10; i++)
+	{
+		total += 1;
+	}
+	sum = add(10,5);
 
-	/*Set PA5 to output mode*/
-	GPIOA ->MODER |= (1U<<10);
-	GPIOA->MODER &=~(1U<<11); // BIT 11 to 0
-	while(1){
-		GPIOA->ODR ^=LED_PIN;
-		for(int i = 0; i < 100000; i++){}
+	while(1)
+	{
+
 	}
 }
