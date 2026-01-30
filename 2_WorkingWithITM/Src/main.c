@@ -1,24 +1,13 @@
 # include "stm32f446xx.h"
 
-int sum;
-
-int add(int num1, int num2){
-	int temp = 0;
-	temp = num1 +  num2;
-	return temp;
-}
-
+char _a[1] = {'A'};
+char *pt_a = _a;
 int main(void)
 {
-	int total;
-	for(int i = 0; i < 10; i++)
-	{
-		total += 1;
-	}
-	sum = add(10,5);
 
 	while(1)
 	{
+		ITM_SendChar(*pt_a);
 
 	}
 }
