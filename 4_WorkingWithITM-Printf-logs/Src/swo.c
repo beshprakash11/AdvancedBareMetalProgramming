@@ -20,3 +20,10 @@ void log_info(char *p)
 	printf((char *)p);
 	printf("\r\n");
 }
+
+void log_debug(char *p)
+{
+	printf("log debug:");
+	printf((char *)p);
+	printf("\r\n");
+}
