@@ -2,7 +2,8 @@
 # include "stm32f446xx.h"
 # include <stdio.h>
 
-int __io_putchar(int ch){
+int __io_putchar(int ch)
+{
 	ITM_SendChar(ch);
 	return ch;
 }
@@ -27,3 +28,4 @@ void log_debug(char *p)
 	printf((char *)p);
 	printf("\r\n");
 }
+
