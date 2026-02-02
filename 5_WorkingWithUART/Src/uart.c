@@ -5,6 +5,7 @@
 
 #define CR1_TE                   (1U<<3) // Control register 1 (USART_CR1) Enable Transmitter
 #define CR1_RE                   (1U<<2) // Control register 1 (USART_CR1) Enable Receiver
+#define CR1_UE                   (1U<<13) // Control register 1 (USART_CR1) USART Enable
 
 #define UART_BAUDRATE   115200 //Set standard baudrate
 #define CLK 						 1600000 //16MHz
@@ -36,10 +37,11 @@ void uart2_tx_init(void)
 	uart_set_baudrate(CLK, UART_BAUDRATE);
 
 	/*6. Set transfer direction*/
-	USART2->CR1 = CR1_TE;
+	USART2->CR1 = CR1_TE;  // Set all CR1 0 except CR1_TE
 
 
 	/*7. Enable UART Module*/
+	USART2->CR1 = CR1_UE; // Set all CR1 0 except CR1_UE
 }
 
 static uint16_t compute_uart_bd(uint32_t periph_clk, uint32_t baudrate)
