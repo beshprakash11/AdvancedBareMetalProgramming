@@ -27,3 +27,13 @@ void uart2_tx_init(void)
 	/*6. Set transfer direction*/
 	/*7. Enable UART Module*/
 }
+
+static uint16_t_compute_uart_bd(uint32_t periph_clk, uint32_t baudrate)
+{
+	return ((periph_clk + (baudrate/2U))/baudrate);
+}
+
+static void uart_set_baudrate(uint32_t periph_clk, uint32_t baudrate)
+{
+	USART2->BBR = int16_t_compute_uart_bd( periph_clk,  baudrate);
+}
