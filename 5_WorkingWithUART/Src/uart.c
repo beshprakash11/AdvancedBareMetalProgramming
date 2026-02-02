@@ -2,7 +2,12 @@
 
 #define UART2EN 			     (1U<<17) // Position 17 set to 1
 #define GPIOAEN			     (1U<<0) //ALL bit set to 0's
+
+#define CR1_TE                   (1U<<3) // Control register 1 (USART_CR1) Enable Transmitter
+#define CR1_RE                   (1U<<2) // Control register 1 (USART_CR1) Enable Receiver
+
 #define UART_BAUDRATE   115200 //Set standard baudrate
+#define CLK 						 1600000 //16MHz
 
 static uint16_t compute_uart_bd(uint32_t periph_clk, uint32_t baudrate);
 static void uart_set_baudrate(uint32_t periph_clk, uint32_t baudrate);
@@ -28,7 +33,12 @@ void uart2_tx_init(void)
 	RCC->APB1ENR |= UART2EN;
 
 	/*5. Set Baudrate*/
+	uart_set_baudrate(CLK, UART_BAUDRATE);
+
 	/*6. Set transfer direction*/
+	USART2->CR1 = CR1_TE;
+
+
 	/*7. Enable UART Module*/
 }
 
