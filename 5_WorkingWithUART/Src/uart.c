@@ -1,11 +1,13 @@
 #include "uart.h"
 
 #define UART2EN 			(1U<<17) // Position 17 set to 1
+#define GPIOAEN			(1U<<0) //ALL bit set to 0's
 
 void uart2_tx_init(void)
 {
 	/*+++++++++++Configure UART GPIO pin+++++++++++++++++*/
 	/*1. Enable clock access to GPIOA*/
+	RCC->AHB1ENR |= GPIOAEN;
 	/*2. Set PA2 mode to alternate function mode*/
 	/*3. Set PA2 alternate function function type to AF7  (UART2_TX)*/
 

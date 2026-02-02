@@ -2,5 +2,6 @@
 #define __UART_H__
 
 #include <stdint.h>
-#include "stm32f4xx.h"
+//#include "stm32f4xx.h"
+# include "stm32f446xx.h"
 #endif
