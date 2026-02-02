@@ -8,12 +8,21 @@ void uart2_tx_init(void)
 	/*+++++++++++Configure UART GPIO pin+++++++++++++++++*/
 	/*1. Enable clock access to GPIOA*/
 	RCC->AHB1ENR |= GPIOAEN;
-	/*2. Set PA2 mode to alternate function mode*/
-	/*3. Set PA2 alternate function function type to AF7  (UART2_TX)*/
 
+	/*2. Set PA2 mode to alternate function mode*/
+	GPIOA ->MODER &= ~(1U<<4); //Set bit 4 to 0
+	GPIOA ->MODER |= (1U<<5); // Set bit 5 to 1
+
+	/*3. Set PA2 alternate function function type to AF7  (UART2_TX)*/
+	GPIOA->AFR[0]  |= (1U<<8);
+	GPIOA->AFR[0]  |= (1U<<9);
+	GPIOA->AFR[0]  |= (1U<<10);
+	GPIOA->AFR[0]  &= ~(1U<<11);
 
 	/*+++++++++++Configure UART Module+++++++++++++++++*/
 	/*4. Enable clock access to UART2*/
+	RCC->APB1ENR |= UART2EN;
+
 	/*5. Set Baudrate*/
 	/*6. Set transfer direction*/
 	/*7. Enable UART Module*/
