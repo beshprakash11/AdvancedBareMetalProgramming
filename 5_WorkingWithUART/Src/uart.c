@@ -1,7 +1,11 @@
 #include "uart.h"
 
-#define UART2EN 			(1U<<17) // Position 17 set to 1
-#define GPIOAEN			(1U<<0) //ALL bit set to 0's
+#define UART2EN 			     (1U<<17) // Position 17 set to 1
+#define GPIOAEN			     (1U<<0) //ALL bit set to 0's
+#define UART_BAUDRATE   115200 //Set standard baudrate
+
+static uint16_t compute_uart_bd(uint32_t periph_clk, uint32_t baudrate);
+static void uart_set_baudrate(uint32_t periph_clk, uint32_t baudrate);
 
 void uart2_tx_init(void)
 {
@@ -28,7 +32,7 @@ void uart2_tx_init(void)
 	/*7. Enable UART Module*/
 }
 
-static uint16_t_compute_uart_bd(uint32_t periph_clk, uint32_t baudrate)
+static uint16_t compute_uart_bd(uint32_t periph_clk, uint32_t baudrate)
 {
 	return ((periph_clk + (baudrate/2U))/baudrate);
 }
