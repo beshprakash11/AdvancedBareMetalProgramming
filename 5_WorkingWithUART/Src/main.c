@@ -1,13 +1,12 @@
-# include "swo.h"
 # include "stm32f446xx.h"
+# include "uart.h"
 
+#include <stdio.h>
 int main(void)
 {
-	log_error("Initialization failed\n");
-	log_info("Filter complete\n");
-	log_debug("Warning, bad argument\n");
+	uart2_tx_init();
 	while(1)
 	{
-
+		printf("Hello from main function\n\r");
 	}
 }

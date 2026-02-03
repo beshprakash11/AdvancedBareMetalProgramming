@@ -4,4 +4,7 @@
 #include <stdint.h>
 //#include "stm32f4xx.h"
 # include "stm32f446xx.h"
+
+void uart2_tx_init(void);
+
 #endif
