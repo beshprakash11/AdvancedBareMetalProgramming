@@ -1,12 +1,33 @@
 # include "stm32f446xx.h"
-# include "uart.h"
-
 #include <stdio.h>
+
+#define GPIOCEN 		(1U<<2)
+#define PIN13       		(1U<<13)
+#define BTN_PIN 		PIN13
+
+uint8_t button_state;
+
 int main(void)
 {
-	uart2_tx_init();
+	/*Enable clock access to GPIOC*/
+	RCC->AHB1ENR |= GPIOCEN;
+
+	/*Set PC13 as input pin*/
+	GPIOC ->MODER &= ~(1U<<26);
+	GPIOC ->MODER &= ~(1U<<27);
+
 	while(1)
 	{
-		printf("Hello from main function\n\r");
+		/*Check i if BTN is pressed or not*/
+		/*Pushbutton is active low*/
+		if(GPIOC->IDR & BTN_PIN) //IDR Stand for Input Data Register
+		{
+			button_state = 0;
+		}
+		else
+		{
+			button_state = 1;
+		}
+		for(int i=0; i<9000; i++){} // delay
 	}
 }

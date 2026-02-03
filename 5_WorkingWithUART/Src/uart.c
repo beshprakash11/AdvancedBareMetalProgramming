@@ -45,7 +45,7 @@ void uart2_tx_init(void)
 	uart_set_baudrate(CLK, UART_BAUDRATE);
 
 	/*6. Set transfer direction*/
-	USART2->CR1 = CR1_TE;  // Set all CR1 0 except CR1_TE
+	USART2->CR1 |= CR1_TE;  // Set all CR1 0 except CR1_TE
 
 
 	/*7. Enable UART Module*/
